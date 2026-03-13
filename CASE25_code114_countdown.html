@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>CASE 25 - Secure Access</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f0f0f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+        }
+        input {
+            padding: 10px;
+            width: 70%;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #content {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid white;
+        }
+        #countdown {
+            font-size: 24px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CASE 25</h1>
+        <p>Voer de verificatiecode in:</p>
+        <input type="password" id="password" placeholder="Code">
+        <br>
+        <button onclick="checkPassword()">Toegang</button>
+
+        <div id="content">
+            <h2>✔ Toegang verleend</h2>
+            <p>Aftelklok naar 22 maart:</p>
+            <div id="countdown"></div>
+        </div>
+    </div>
+
+<script>
+function checkPassword() {
+    var input = document.getElementById("password").value;
+    var correctPassword = "114";
+
+    if (input === correctPassword) {
+        document.getElementById("content").style.display = "block";
+        startCountdown();
+    } else {
+        alert("Onjuiste code. Probeer opnieuw.");
+    }
+}
+
+function startCountdown() {
+    var targetDate = new Date("March 22, 2026 00:00:00").getTime();
+
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = targetDate - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+            days + "d " + hours + "u " + minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "🎉 Het is 22 maart!";
+        }
+    }, 1000);
+}
+</script>
+
+</body>
+</html>
