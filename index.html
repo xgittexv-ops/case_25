@@ -53,12 +53,13 @@
 
         <div id="content">
             <h2>✔ Toegang verleend</h2>
-            <p>Aftelklok naar 22 maart:</p>
+            <p>Resterende tijd:</p>
             <div id="countdown"></div>
-            <p>Je vindt de volgende aanwijzing morgen, op:</p>
-            <p>51.0167 | 5.3</p>
+            <button id="nextButton" onclick="goToNext()">Bekijk bewijsstuk</button>
         </div>
     </div>
+
+
 
 <script>
 function checkPassword() {
@@ -93,6 +94,10 @@ function startCountdown() {
             document.getElementById("countdown").innerHTML = "🎉 Het is 22 maart!";
         }
     }, 1000);
+}
+
+function goToNext(){
+    window.location.href = "locatie.mp4";
 }
 </script>
 
